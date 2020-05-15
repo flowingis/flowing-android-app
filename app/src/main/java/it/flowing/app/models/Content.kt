@@ -1,7 +1,7 @@
 package it.flowing.app.models
 
-class Content (
-    val id: Number,
+data class Content (
+    val id: Double,
     val title: String,
     val content: String,
     val slug: String

@@ -11,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val BASE_URL = "https://api.flowing.it/api"
+const val BASE_URL = "https://api.flowing.it/api/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

@@ -1,6 +1,6 @@
 package it.flowing.app.models
 
-class Page<T>(
+data class Page<T>(
     val items: List<T>,
-    val total: Number
+    val total: Double
 )
