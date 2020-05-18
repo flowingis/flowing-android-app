@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import it.flowing.app.R
+import it.flowing.app.databinding.OverviewFragmentBinding
 
 class OverviewFragment : Fragment() {
 
@@ -15,24 +16,18 @@ class OverviewFragment : Fragment() {
         fun newInstance() = OverviewFragment()
     }
 
-    private lateinit var viewModel: OverviewViewModel
+    private val viewModel: OverviewViewModel by lazy {
+        ViewModelProvider(this).get(OverviewViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.overview_fragment, container, false)
+        val binding = OverviewFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.contentsRecycler.adapter = ContentsAdapter()
+        return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(OverviewViewModel::class.java)
-
-        viewModel.status.observe(this.viewLifecycleOwner, Observer {
-            Log.d("NEW STATUS", viewModel.status.value.toString())
-        })
-
-    }
-
 }
