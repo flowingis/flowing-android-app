@@ -7,10 +7,11 @@
     tools:context=".ui.MainActivity">
 
     <fragment
-        android:id="@+id/fragment"
-        android:name="it.flowing.app.ui.OverviewFragment"
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:navGraph="@navigation/nav_graph"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
