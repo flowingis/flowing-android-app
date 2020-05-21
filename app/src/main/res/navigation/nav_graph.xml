@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/overviewFragment"
         android:name="it.flowing.app.ui.OverviewFragment"
-        android:label="overview_fragment"
+        android:label="Flowing blog"
         tools:layout="@layout/overview_fragment" >
         <action
             android:id="@+id/action_overviewFragment_to_detailsFragment"
