@@ -1,6 +1,9 @@
 package it.flowing.app.ui
+import android.os.Build
+import android.text.Html
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -29,4 +32,11 @@ fun bindVisibilityOnLoading (view: View, status: OverviewViewModel.ContentApiSta
 fun bindingContentsList (recyclerView: RecyclerView, data: List<Content>?) {
     val adapter = recyclerView.adapter as ContentsAdapter
     adapter.submitList(data)
+}
+
+@BindingAdapter("htmlText")
+fun bindingHtmlText (textView: TextView, html: String?) {
+    textView.text = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+        Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT)
+        else Html.fromHtml(html)
 }
