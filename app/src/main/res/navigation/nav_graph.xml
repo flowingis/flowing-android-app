@@ -17,6 +17,13 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="it.flowing.app.ui.detail.DetailFragment"
-        android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" />
+        android:label="{contentTitle}"
+        tools:layout="@layout/detail_fragment">
+        <argument
+            android:name="content"
+            app:argType="it.flowing.app.models.Content" />
+        <argument
+            android:name="contentTitle"
+            app:argType="string" />
+    </fragment>
 </navigation>

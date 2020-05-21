@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
 import it.flowing.app.R
+import it.flowing.app.databinding.DetailFragmentBinding
 
 class DetailFragment : Fragment() {
 
@@ -21,11 +22,18 @@ class DetailFragment : Fragment() {
         ViewModelProvider(this).get(DetailViewModel::class.java)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.content.value = DetailFragmentArgs.fromBundle(requireArguments()).content
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        
-        return inflater.inflate(R.layout.detail_fragment, container, false)
+        val binding = DetailFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.content = viewModel.content.value
+        return binding.root
     }
 }

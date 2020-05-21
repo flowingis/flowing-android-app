@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import it.flowing.app.R
 import it.flowing.app.databinding.OverviewFragmentBinding
+import it.flowing.app.ui.detail.DetailFragmentArgs
 
 class OverviewFragment : Fragment() {
 
@@ -30,7 +31,8 @@ class OverviewFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.contentsRecycler.adapter = ContentsAdapter {
-            findNavController().navigate(R.id.action_overviewFragment_to_detailsFragment)
+            val action = OverviewFragmentDirections.actionOverviewFragmentToDetailsFragment(it, it.title)
+            findNavController().navigate(action)
         }
         return binding.root
     }
