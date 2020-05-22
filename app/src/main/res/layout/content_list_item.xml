@@ -58,7 +58,7 @@
                 android:text="@{content.people[0].name}"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 tools:text="Article Author"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

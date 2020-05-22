@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import it.flowing.app.R
 import it.flowing.app.databinding.OverviewFragmentBinding
+import it.flowing.app.models.Content
 import it.flowing.app.ui.detail.DetailFragmentArgs
 
 class OverviewFragment : Fragment() {
@@ -30,9 +32,16 @@ class OverviewFragment : Fragment() {
         val binding = OverviewFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.contentsRecycler.adapter = ContentsAdapter {
-            val action = OverviewFragmentDirections.actionOverviewFragmentToDetailsFragment(it, it.title)
-            findNavController().navigate(action)
+        binding.contentsRecycler.apply {
+            adapter = ContentsAdapter { content: Content, extras: FragmentNavigator.Extras ->
+                val action = OverviewFragmentDirections.actionOverviewFragmentToDetailsFragment(content, content.title)
+                findNavController().navigate(action, extras)
+            }
+            postponeEnterTransition()
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
         }
         return binding.root
     }
